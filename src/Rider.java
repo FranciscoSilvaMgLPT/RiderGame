@@ -1,7 +1,11 @@
 public class Rider extends Human {
 
+    int trains;
+    int training;
+
     public Rider(String name, int cash) {
         super(name, cash);
+        this.training=0;
     }
 
     public boolean canRide() {
@@ -18,5 +22,13 @@ public class Rider extends Human {
             }
         }
         return true;
+    }
+
+    public int getTrains() {
+        return trains;
+    }
+
+    public void setTrains(int trains) {
+        this.trains = trains;
     }
 }

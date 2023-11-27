@@ -1,6 +1,6 @@
 package Body;
 
-public class Legs extends BodyParts{
+public class Legs extends BodyPart {
 
     public Legs(int repairCost) {
         super("legs", repairCost);

@@ -9,12 +9,12 @@ import java.util.Scanner;
 public abstract class Human {
     private final String name;
     private ArrayList<Equipment> equipment;
-    private ArrayList<BodyParts> body;
+    private ArrayList<BodyPart> body;
     private Motorcycle motorcycle;
     private int cash;
     private boolean alive = true;
     private Head head;
-    private Feets feets;
+    private Feets feet;
     private Torso torso;
     private Legs legs;
 
@@ -25,8 +25,8 @@ public abstract class Human {
         this.head = new Head();
         this.torso = new Torso(800);
         this.legs = new Legs(400);
-        this.feets = new Feets(200);
-        this.body.addAll(Arrays.asList(this.head, this.torso, this.legs, this.feets));
+        this.feet = new Feets(200);
+        this.body.addAll(Arrays.asList(this.head, this.torso, this.legs, this.feet));
         this.name = name;
         this.cash = cash;
     }
@@ -49,7 +49,7 @@ public abstract class Human {
         if (this.motorcycle != null) {
             System.out.print("Are you sure? Your motorcycle [" + this.motorcycle.getName() +
                     "] will get rewritten by the new one!  \n" +
-                    "1-Yes!!💪  2-No..!😭\n\n"+Colors.YELLOW.get()+"Option:"+Colors.RESET.get());
+                    "1-Yes!!💪  2-No..!😭\n\n"+Colors.YELLOW+"Option:"+Colors.RESET);
             option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -78,7 +78,7 @@ public abstract class Human {
         return alive;
     }
 
-    public ArrayList<BodyParts> getBody() {
+    public ArrayList<BodyPart> getBody() {
         return body;
     }
 
@@ -86,8 +86,8 @@ public abstract class Human {
         return head;
     }
 
-    public Feets getFeets() {
-        return feets;
+    public Feets getFeet() {
+        return feet;
     }
 
     public Torso getTorso() {

@@ -2,13 +2,13 @@ package Body;
 
 import Items.Clothes.Equipment;
 
-public abstract class BodyParts {
+public abstract class BodyPart {
     private final String name;
-    private boolean healthy=true;
-    private int repairCost;
+    private boolean healthy = true;
+    private Integer repairCost=null;
     private Equipment equipment = null;
 
-    public BodyParts(String name, Integer repairCost) {
+    public BodyPart(String name, Integer repairCost) {
         this.name = name;
         this.repairCost = repairCost;
     }

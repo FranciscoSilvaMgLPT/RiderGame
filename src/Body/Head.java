@@ -1,6 +1,6 @@
 package Body;
 
-public class Head extends BodyParts{
+public class Head extends BodyPart {
     public Head() {
         super("head", null);
     }
