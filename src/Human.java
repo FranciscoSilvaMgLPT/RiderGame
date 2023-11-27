@@ -78,6 +78,15 @@ public abstract class Human {
         return alive;
     }
 
+    public void setAlive(boolean alive) {
+        if(alive){
+            this.head.setHealthy(true);
+            this.torso.setHealthy(true);
+            this.legs.setHealthy(true);
+            this.feet.setHealthy(true);
+        }
+        this.alive = alive;
+    }
     public ArrayList<BodyPart> getBody() {
         return body;
     }
