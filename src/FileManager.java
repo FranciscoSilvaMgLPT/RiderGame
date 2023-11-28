@@ -29,7 +29,7 @@ final String path="/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
                     return true;
                 }
             }
-            System.out.println(Colors.RED+"User not found."+Colors.RESET);
+            System.out.println(Colors.RED+"\nUser not found."+Colors.RESET);
 
         } catch (IOException e) {
             System.err.println("Error reading from the file: " + e.getMessage());

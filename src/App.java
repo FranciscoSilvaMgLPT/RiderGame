@@ -16,7 +16,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         int option;
         do {
-            System.out.print("\n\n1- Login\n2- Sign up\n0-Exit\nOption:");
+            System.out.print("\n\n1- LOGIN\n2- SIGN UP\n0-EXIT\nOption:");
             option = sc.nextInt();
             switch (option) {
                 case 1:
