@@ -2,7 +2,9 @@ package Body;
 
 import Items.Clothes.Equipment;
 
-public abstract class BodyPart {
+import java.io.Serializable;
+
+public abstract class BodyPart implements Serializable {
     private final String name;
     private boolean healthy = true;
     private Integer repairCost=null;

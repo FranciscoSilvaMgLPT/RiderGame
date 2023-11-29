@@ -1,4 +1,6 @@
-public enum Colors {
+import java.io.Serializable;
+
+public enum Colors  implements Serializable {
 
     RESET {
         public String toString() {

@@ -10,4 +10,5 @@ public class Hospital {
     public void cure(BodyPart bodyPart){
         bodyPart.setHealthy(true);
     }
+
 }

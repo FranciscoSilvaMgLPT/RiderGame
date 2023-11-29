@@ -1,6 +1,8 @@
 package Items.MotoParts;
 
-public abstract class Parts {
+import java.io.Serializable;
+
+public abstract class Parts  implements Serializable {
     private final String name;
     private boolean destroyed;
     private final int cost;

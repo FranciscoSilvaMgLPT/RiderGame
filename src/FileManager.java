@@ -1,15 +1,15 @@
 import java.io.*;
 
 public class FileManager {
-final String path="/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
+    final String path = "/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
 
-    protected void saveUser(User user) {
+    protected void saveUserLog(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) {
             writer.write(user.getName() + "||");
             writer.write(user.getPassword());
             writer.newLine();
             writer.close();
-            System.out.println(Colors.GREEN+"User \""+user.getName()+"\" created, saved to the file successfully."+Colors.RESET);
+            System.out.println(Colors.GREEN + "User \"" + user.getName() + "\" created, saved to the file successfully." + Colors.RESET);
         } catch (IOException e) {
             System.err.println("Error writing to the file: " + e.getMessage());
         }
@@ -29,7 +29,7 @@ final String path="/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
                     return true;
                 }
             }
-            System.out.println(Colors.RED+"\nUser not found."+Colors.RESET);
+            System.out.println(Colors.RED + "\nUser not found." + Colors.RESET);
 
         } catch (IOException e) {
             System.err.println("Error reading from the file: " + e.getMessage());
@@ -37,12 +37,29 @@ final String path="/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
         return false;
     }
 
-    protected void saveRider(Rider rider){
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path,true))) {
-                oos.writeObject(rider);
-                System.out.println("Object saved to the file successfully.");
-            } catch (Exception e) {
-                System.err.println("Error saving the object to the file: " + e.getMessage());
+    protected void saveUser(User user) {
+        String filePath = "/Users/mindera/IdeaProjects/SoloGame/src/Users/".concat(user.getName().concat(".txt"));
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
+            objectOutputStream.writeObject(user);
+            System.out.println("Saved successfully.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while saving the object to a file.");
+            e.printStackTrace();
         }
+    }
+
+    protected User loadUser(User user1) {
+        String filePath = "/Users/mindera/IdeaProjects/SoloGame/src/Users/".concat(user1.getName().concat(".txt"));
+        User user = null;
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
+            user = (User) objectInputStream.readObject();
+            System.out.println("Rider " + user.getRider().getName() + " loaded successfully.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("An error occurred while loading the object from a file.");
+            e.printStackTrace();
+        }
+        return user;
     }
 }

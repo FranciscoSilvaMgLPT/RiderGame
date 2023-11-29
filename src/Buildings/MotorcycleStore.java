@@ -12,5 +12,22 @@ public class MotorcycleStore {
             new Motorcycle("Kawasaki",4,700),new Motorcycle("Ducati",4,700),
             new Motorcycle("Saschs",2,500)));
 
+    public MotorcycleStore() {
+    }
 
+    public ArrayList<Parts> getParts() {
+        return parts;
+    }
+
+    public void setParts(ArrayList<Parts> parts) {
+        this.parts = parts;
+    }
+
+    public ArrayList<Motorcycle> getMotorcycles() {
+        return motorcycles;
+    }
+
+    public void setMotorcycles(ArrayList<Motorcycle> motorcycles) {
+        this.motorcycles = motorcycles;
+    }
 }

@@ -4,10 +4,11 @@ import Items.MotoParts.Engine;
 import Items.MotoParts.Parts;
 import Items.MotoParts.Tires;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Motorcycle {
+public class Motorcycle implements Serializable {
     private ArrayList<Parts> parts = new ArrayList<>();
     private final String name;
     private int price;

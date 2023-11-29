@@ -2,11 +2,12 @@ import Body.*;
 import Items.Clothes.Equipment;
 import Items.Motorcycle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public abstract class Human {
+public abstract class Human  implements Serializable {
     private final String name;
     private ArrayList<Equipment> equipment;
     private ArrayList<BodyPart> body;

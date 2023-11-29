@@ -1,6 +1,8 @@
 package Body;
 
-public class Head extends BodyPart {
+import java.io.Serializable;
+
+public class Head extends BodyPart implements Serializable {
     public Head() {
         super("head", null);
     }

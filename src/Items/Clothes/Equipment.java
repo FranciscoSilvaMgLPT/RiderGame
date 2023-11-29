@@ -1,6 +1,8 @@
 package Items.Clothes;
 
-public abstract class Equipment {
+import java.io.Serializable;
+
+public abstract class Equipment  implements Serializable {
     int cost;
     String name;
 
