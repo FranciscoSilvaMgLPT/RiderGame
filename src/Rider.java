@@ -11,7 +11,7 @@ public class Rider extends Human implements Serializable {
 
     public Rider(String name, int cash) {
         super(name, cash);
-        this.training=0;
+        this.training = 0;
         this.setMotorcycle(new Motorcycle("FAMEL", 0, 0));
     }
 
@@ -22,11 +22,10 @@ public class Rider extends Human implements Serializable {
                 return false;
             }
         }
-        for (int i = 0; i < this.getMotorcycle().getParts().size(); i++) {
-            if (this.getMotorcycle().getParts().get(i).isDestroyed()) {
-                System.out.println("You cant ride! Your " + this.getMotorcycle().getParts().get(i).getName() + " doesnt look good!");
-                return false;
-            }
+        if (this.getMotorcycle().getTires().isDestroyed() || this.getMotorcycle().getEngine().isDestroyed()) {
+            System.out.println("You cant ride! Your doesnt look good!");
+            return false;
+
         }
         return true;
     }
