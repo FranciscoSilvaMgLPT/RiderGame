@@ -12,7 +12,7 @@ public class Rider extends Human implements Serializable {
     public Rider(String name, int cash) {
         super(name, cash);
         this.training = 0;
-        this.setMotorcycle(new Motorcycle("FAMEL", 0, 0));
+        this.setMotorcycle(new Motorcycle("FAMEL", 0));
     }
 
     public boolean canRide() {

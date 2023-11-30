@@ -1,7 +1,13 @@
 import Buildings.Hospital;
 import Buildings.MotorcycleStore;
 import FrontEnds.Jbl;
+import Items.MotoParts.Engine;
+import Items.MotoParts.Tires;
+import Items.Motorcycle;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,6 +33,7 @@ public class Game {
                     break;
                 case 2:
                     new Jbl().menu();
+                    break;
                 case 0:
                     System.out.println(user.getName() + Colors.RED + " logging out!" + Colors.RESET);
                     new App().start();
@@ -53,13 +60,18 @@ public class Game {
             switch (option) {
                 case 1:
                     broke = false;
+                    try {
+                        new Jbl().startRaceSound();
+                    }catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+                        System.out.println("Error: " + e);
+                    }
                     for (int i = 0; i < user.getRider().getBody().size(); i++) {
                         if (!user.getRider().getBody().get(i).isHealthy()) {
-                            broke=true;
+                            broke = true;
                         }
                     }
-                    if(user.getRider().getMotorcycle().getEngine().isDestroyed() || user.getRider().getMotorcycle().getTires().isDestroyed()){
-                        broke=true;
+                    if (user.getRider().getMotorcycle().getEngine().isDestroyed() || user.getRider().getMotorcycle().getTires().isDestroyed()) {
+                        broke = true;
                     }
                     if (!broke) {
                         if (user.getRider().getTrains() % 3 == 0 && user.getRider().getTrains() != 0) {
@@ -123,7 +135,7 @@ public class Game {
         Thread thread = new Thread();
         int[] placed = {95, 80, 60};
         for (int i = 0; i < placed.length; i++) {
-            placed[i] = placed[i] - user.getRider().getMotorcycle().getPower();
+            placed[i] = placed[i] - user.getRider().getMotorcycle().getEngine().getLvl();
         }
         int randomNumberWin = random.nextInt(100) + 1;
         try {
@@ -136,9 +148,9 @@ public class Game {
             System.out.print(".");
             Thread.sleep(500);
             System.out.println(".");
-            Thread.sleep(500);
-            System.out.println("GOOOO!!!");
             Thread.sleep(1000);
+            System.out.println("GOOOO!!!");
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -175,7 +187,7 @@ public class Game {
         Thread thread = new Thread();
         int[] placed = {90, 70, 50};
         for (int i = 0; i < placed.length; i++) {
-            placed[i] = placed[i] - user.getRider().getMotorcycle().getPower();
+            placed[i] = placed[i] - user.getRider().getMotorcycle().getEngine().getLvl();
         }
         int randomNumberWin = random.nextInt(100) + 1;
         try {
@@ -188,9 +200,9 @@ public class Game {
             System.out.print(".");
             Thread.sleep(500);
             System.out.println(".");
-            Thread.sleep(500);
-            System.out.println("GOOOO!!!");
             Thread.sleep(1000);
+            System.out.println("GOOOO!!!");
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -253,19 +265,69 @@ public class Game {
     }
 
     private void goToStore(User user) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        System.out.print("\n\nHello pretty rider! Welcome to our store! 🏍️\nWhat do you need?\n1- Buy MotoParts  2- Buy clothes  3-Buy Motorcycle  0-Back\nOption:");
+        option = sc.nextInt();
+        switch (option) {
+            case 1:
+                for (int i = 0; i < motorcycleStore.getParts().size(); i++) {
+                    System.out.println("[" + (i + 1) + "]- " + motorcycleStore.getParts().get(i).getName() + ", " + motorcycleStore.getParts().get(i).getCost() + "€, power:" + motorcycleStore.getParts().get(i).getLvl());
+                }
+                System.out.print("Insert ID:");
+                option = sc.nextInt() - 1;
 
+                break;
+            case 2:
+                for (int i = 0; i < motorcycleStore.getEquipment().size(); i++) {
+                    System.out.println("[" + (i + 1) + "]- " + motorcycleStore.getEquipment().get(i).getName() + ", " + motorcycleStore.getEquipment().get(i).getCost() + "€");
+                }
+                System.out.print("Insert ID:");
+                option = sc.nextInt() - 1;
+
+                break;
+            case 3:
+                for (int i = 0; i < motorcycleStore.getMotorcycles().size(); i++) {
+                    System.out.println("[" + (i + 1) + "]- " + motorcycleStore.getMotorcycles().get(i).getName() + ", " + motorcycleStore.getMotorcycles().get(i).getPrice() + "€");
+                }
+                System.out.println("0- Back");
+                System.out.print("Insert ID:");
+                option = sc.nextInt() - 1;
+                user.getRider().setMotorcycle(motorcycleStore.getMotorcycles().get(option));
+                switch (option) {
+                    case -1:
+                        goToStore(user);
+                        break;
+                }
+                break;
+            case 0:
+                play(user);
+                break;
+            case 666:
+                motorcycleStore.getMotorcycles().add(new Motorcycle("YAMAHA DO CHICO", 0, new Engine(0, 0, 500), new Tires(0, 0, 500)));
+                System.out.println("CREATED! 👀");
+                break;
+            default:
+                System.out.println("Whaaaa?!?!");
+                goToStore(user);
+        }
     }
 
     private boolean crash(User user) {
         int crash = 75;
         int bike = 40;
         int body = 80;
-        crash = crash + user.getRider().getMotorcycle().getSafety();
+        crash = crash + user.getRider().getMotorcycle().getTires().getLvl();
         Random random = new Random();
         int randomNumberCrash = random.nextInt(100) + 1;
         int randomNumberDamage = random.nextInt(100) + 1;
 
         if (randomNumberCrash >= crash) {
+            try{
+                new Jbl().accidentSound();
+            }catch (IOException | LineUnavailableException | UnsupportedAudioFileException e){
+                System.out.println("Error: "+e);
+            }
             try {
                 Thread.sleep(500);
                 System.out.println("Damn... seems like you crashed 😭");
@@ -273,13 +335,13 @@ public class Game {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if (randomNumberDamage >= 40 && randomNumberDamage < 75) {
+            if (randomNumberDamage >= 40 && randomNumberDamage < 80) {
                 damageBody(user);
             }
             if (randomNumberDamage >= 0 && randomNumberDamage < 40) {
                 damageBike(user);
             }
-            if (randomNumberDamage >= 75 && randomNumberDamage <= 100) {
+            if (randomNumberDamage >= 80 && randomNumberDamage <= 100) {
                 System.out.println(Colors.RED + "Damn......" + Colors.RESET);
                 damageBody(user);
                 damageBike(user);

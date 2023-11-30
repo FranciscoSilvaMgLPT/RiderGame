@@ -1,4 +1,9 @@
+import FrontEnds.Jbl;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
@@ -6,6 +11,11 @@ public class App {
 
     protected void start() {
         intro();
+        try {
+            new Jbl().backgroundMusic();
+        }catch (IOException | LineUnavailableException | UnsupportedAudioFileException e){
+            System.out.println("Error: "+e);
+        }
         menu();
     }
 
@@ -57,7 +67,6 @@ public class App {
             String filePath = "/Users/mindera/IdeaProjects/SoloGame/src/Users/".concat(name.concat(".txt"));
             File file = new File(filePath);
             if(file.exists()){
-                System.out.println("asd");
                 new Game().start(new FileManager().loadUser(new User(name,password)));
             }
             new Game().start(new User(name, password));
