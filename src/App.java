@@ -1,3 +1,4 @@
+import FrontEnds.ArtLogos;
 import FrontEnds.Jbl;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -20,7 +21,7 @@ public class App {
     }
 
     private void intro() {
-        System.out.println("blabla");
+        new ArtLogos().title();
     }
 
     protected void menu() {
