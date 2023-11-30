@@ -5,3 +5,5 @@ rui||rui
 joao||joao
 Silka||1234
 rod||rod
+ricky||ricky123
+rick||rick123

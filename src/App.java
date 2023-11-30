@@ -39,6 +39,7 @@ public class App {
                     break;
                 case 0:
                     System.out.println("Adios coraçon! 🥲");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Ahm?");
