@@ -31,7 +31,7 @@ public class Jbl {
 
     public void backgroundMusic() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         Clip clip = AudioSystem.getClip();
-        File file = new File("/Users/mindera/IdeaProjects/SoloGame/src/FrontEnds/Mp3Files/RuGonnaMove.wav");
+        File file = new File("src/FrontEnds/Mp3Files/RuGonnaMove.wav");
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             clip.open(audioInputStream);
             clip.loop(10);
@@ -41,7 +41,7 @@ public class Jbl {
     public void startRaceSound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
         Clip clip = AudioSystem.getClip();
-        File file = new File("/Users/mindera/IdeaProjects/SoloGame/src/FrontEnds/Mp3Files/Tires-screeching-_480p_.wav");
+        File file = new File("src/FrontEnds/Mp3Files/Tires-screeching-_480p_.wav");
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         clip.open(audioInputStream);
         clip.start();
@@ -50,7 +50,7 @@ public class Jbl {
     public void accidentSound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
         Clip clip = AudioSystem.getClip();
-        File file = new File("/Users/mindera/IdeaProjects/SoloGame/src/FrontEnds/Mp3Files/accident.wav");
+        File file = new File("src/FrontEnds/Mp3Files/accident.wav");
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         clip.open(audioInputStream);
         clip.start();
@@ -59,7 +59,7 @@ public class Jbl {
     public void fatalitySound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
         Clip clip = AudioSystem.getClip();
-        File file = new File("/Users/mindera/Documents/School/NavalBattle/src/Sound/fatality.wav");
+        File file = new File("src/FrontEnds/Mp3Files/fatality.wav");
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         clip.open(audioInputStream);
         clip.start();
@@ -68,7 +68,7 @@ public class Jbl {
     public void cheatSound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
         Clip clip = AudioSystem.getClip();
-        File file = new File("/Users/mindera/Documents/School/NavalBattle/src/Sound/aii.wav");
+        File file = new File("src/FrontEnds/Mp3Files/EvilLaugh.wav");
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
         clip.open(audioInputStream);
         clip.start();

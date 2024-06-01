@@ -14,12 +14,13 @@ import java.util.Scanner;
 public class Game {
     Hospital hospital = new Hospital();
     MotorcycleStore motorcycleStore = new MotorcycleStore();
+    Jbl jbl = new Jbl();
 
-    protected void start(User user) {
+    protected void start(User user) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         menu(user);
     }
 
-    private void menu(User user) {
+    private void menu(User user) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
         Scanner sc = new Scanner(System.in);
         int option;
@@ -32,7 +33,7 @@ public class Game {
                     play(user);
                     break;
                 case 2:
-                    new Jbl().menu();
+                    jbl.menu();
                     break;
                 case 0:
                     System.out.println(user.getName() + Colors.RED + " logging out!" + Colors.RESET);
@@ -42,7 +43,7 @@ public class Game {
         } while (option != 0);
     }
 
-    private void play(User user) {
+    private void play(User user) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Scanner sc = new Scanner(System.in);
         int option;
         boolean broke;
@@ -61,7 +62,7 @@ public class Game {
                 case 1:
                     broke = false;
                     try {
-                        new Jbl().startRaceSound();
+                        jbl.startRaceSound();
                     }catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
                         System.out.println("Error: " + e);
                     }
@@ -264,7 +265,7 @@ public class Game {
         }
     }
 
-    private void goToStore(User user) {
+    private void goToStore(User user) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Scanner sc = new Scanner(System.in);
         int option;
         System.out.print("\n\nHello pretty rider! Welcome to our store! 🏍️\nWhat do you need?\n1- Buy MotoParts  2- Buy clothes  3-Buy Motorcycle  0-Back\nOption:");
@@ -305,6 +306,7 @@ public class Game {
                 break;
             case 666:
                 motorcycleStore.getMotorcycles().add(new Motorcycle("YAMAHA DO CHICO", 0, new Engine(0, 0, 500), new Tires(0, 0, 500)));
+              jbl.cheatSound();
                 System.out.println("CREATED! 👀");
                 break;
             default:
@@ -324,7 +326,7 @@ public class Game {
 
         if (randomNumberCrash >= crash) {
             try{
-                new Jbl().accidentSound();
+                jbl.accidentSound();
             }catch (IOException | LineUnavailableException | UnsupportedAudioFileException e){
                 System.out.println("Error: "+e);
             }

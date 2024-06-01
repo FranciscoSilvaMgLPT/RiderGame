@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class FileManager {
-    final String path = "/Users/mindera/IdeaProjects/SoloGame/src/Users.txt";
+    final String path = "src/Users.txt";
 
     protected void saveUserLog(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) {
@@ -38,7 +38,7 @@ public class FileManager {
     }
 
     protected void saveUser(User user) {
-        String filePath = "/Users/mindera/IdeaProjects/SoloGame/src/Users/".concat(user.getName().concat(".txt"));
+        String filePath = "src/Users/".concat(user.getName().concat(".txt"));
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
             objectOutputStream.writeObject(user);
@@ -50,7 +50,7 @@ public class FileManager {
     }
 
     protected User loadUser(User user1) {
-        String filePath = "/Users/mindera/IdeaProjects/SoloGame/src/Users/".concat(user1.getName().concat(".txt"));
+        String filePath = "src/Users/".concat(user1.getName().concat(".txt"));
         User user = null;
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class App {
 
 
-    protected void start() {
+    protected void start() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         intro();
         try {
             new Jbl().backgroundMusic();
@@ -24,7 +24,7 @@ public class App {
         new ArtLogos().title();
     }
 
-    protected void menu() {
+    protected void menu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Scanner sc = new Scanner(System.in);
         int option;
         do {
@@ -57,7 +57,7 @@ public class App {
         new FileManager().saveUserLog(new User(text, sc.next()));
     }
 
-    private void login() {
+    private void login() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         String name;
         String password;
         Scanner sc = new Scanner(System.in);
